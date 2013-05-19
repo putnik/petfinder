@@ -5,7 +5,7 @@
 {% for p in petphotos %}
 	<li class="span3">
 		<a class="thumbnail" target="_blank" href="/pet/{{ p.pet.id }}">
-			<div style="height:100px; overflow-y:hidden">
+			<div style="height:150px; overflow-y:hidden">
 				<img src="{{ MEDIA_URL }}{{ p.file }}" />
 			</div>
 			<strong>{{ p.pet.name }}</strong>
