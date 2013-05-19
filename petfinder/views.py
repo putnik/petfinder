@@ -24,16 +24,18 @@ def home(request):
     if ('sex' in request.GET and request.GET['sex']):
         petphotos = petphotos.filter(pet__sex=request.GET['sex'])
 
-    return render_to_response('home.html', {
+    return render_to_response('search.html', {
         'request':  request,
         'petphotos': petphotos,
         }, context_instance=RequestContext(request))
 
 def pet(request, id):
-    pet = PetPhoto.objects.get(id=id)
+    pet = Pet.objects.get(id=id)
     photos = PetPhoto.objects.filter(pet=pet)
 
     return render_to_response('pet.html', {
-        'photos': photos,
+        'pet': pet,
+        'photo': photos[0],
+        'photos': photos[1:5],
         }, context_instance=RequestContext(request))
 
