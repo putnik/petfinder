@@ -4,7 +4,7 @@
 
 <div class="navbar">
 	<div class="navbar-inner">
-		<form class="navbar-form form-inline" action="" method="get">
+		<form class="navbar-form form-inline" action="/" method="get">
 			<select name="city" class="input-large">
 				<option value="">Город</option>
 				<option value="1" {% if request.GET.city == '1' %}selected="selected"{% endif %}>Москва</option>
@@ -32,7 +32,7 @@
 </div>
 
 <div class="row">
-	<div class="span4">
+	<div class="span5" style="max-height:300px; overflow-y:hidden">
 		{% if photo %}
 			<img src="{{ MEDIA_URL }}{{ photo.file }}" />
 		{% else %}
@@ -47,7 +47,7 @@
 		{% endfor %}
 		</ul>
 	</div>
-	<div class="span7 offset1">
+	<div class="span6 offset1">
 		<p>
 			<strong>{{ pet.name }}</strong>
 			{% if pet.age %}<br />Возраст: {{ pet.age }} {{ pet.age|pluralize:"год,лет" }}{% endif %}
