@@ -185,4 +185,4 @@ AUTHENTICATION_BACKENDS = (
 )
 
 # Local settings
-from settings_local import *
+from petfinder.settings_local import *
