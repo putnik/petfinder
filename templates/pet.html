@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+
+{% block content %}
+<ul class="thumbnails">
+{% for photo in photos %}
+	<li class="span2">
+		<img src="{{ MEDIA_URL }}{{ photo.file }}" />
+	</li>
+{% endfor %}
+</ul>
+{% endblock %}
+
