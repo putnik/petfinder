@@ -57,6 +57,12 @@ class Pet(models.Model):
         ('B', _("Bad")),
     )
 
+    LOCATION_CHOICES = (
+        ('H', _("House")),
+        ('S', _("Shelter")),
+        ('W', _("Wild")),
+    )
+
     name = models.CharField(max_length=250, verbose_name=_("Name"))
     kind = models.CharField(max_length=1, choices=KIND_CHOICES, default='O', verbose_name=_("Kind"))
     sex = models.CharField(max_length=1, choices=SEX_CHOICES, verbose_name=_("Sex"))
@@ -68,6 +74,7 @@ class Pet(models.Model):
     description = models.TextField(blank=True, verbose_name=_("Description"))
     city = models.ForeignKey('City', verbose_name=_("City"))
     district = models.ForeignKey('District', blank=True, verbose_name=_("District"))
+    location = models.CharField(max_length=1, choices=LOCATION_CHOICES, default='H', verbose_name=_("Location"))
 
     class Meta:
         ordering = ['name',]
