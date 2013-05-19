@@ -56,7 +56,7 @@ class PetPhotoInline(admin.TabularInline):
 class PetAdmin(admin.ModelAdmin):
     fieldsets = (
         (None, {
-            'fields': ('name', 'kind', 'sex', 'age', 'color', 'health', 'city', 'district', 'description',)
+            'fields': ('name', 'kind', 'sex', 'age', 'size', 'color', 'health', 'city', 'district', 'description',)
         }),
     )
 

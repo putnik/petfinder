@@ -54,6 +54,8 @@
 			<strong>{{ pet.name }}</strong>
 			{% if pet.age %}<br />Возраст: {{ pet.age }} {{ pet.age|pluralize:"год,лет" }}{% endif %}
 			<br />Пол: {% if pet.sex == 'M' %}мальчик{% else %}девочка{% endif %}
+			<br />Размер: {% if pet.sex == 'M' %}мальчик{% else %}девочка{% endif %}
+			{% if pet.color %}<br />Цвет: {{ pet.color }}{% endif %}
 			<br />Здоровье: {% if pet.health == 'G' %}отличное{% elif pet.health == 'С' %}среднее{% else %}плохое{% endif %}
 			<br />Находится: {% if pet.location == 'H' %}дома{% elif pet.location == 'S' %}в приюте{% else %}на улице{% endif %}
 		<p>
