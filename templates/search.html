@@ -31,20 +31,24 @@
 	</div>
 </div>
 
-{% if petphotos %}
+{% if pets %}
 <ul class="thumbnails">
-{% for p in petphotos %}
+{% for pet in pets %}
 	<li class="span3">
-		<a class="thumbnail" target="_blank" href="/pet/{{ p.pet.id }}">
+		<a class="thumbnail" target="_blank" href="/pet/{{ pet.id }}">
 			<div style="height:150px; overflow-y:hidden">
-				<img src="{{ MEDIA_URL }}{{ p.file }}" />
+			{% if pet.photo %}
+				<img src="{{ MEDIA_URL }}{{ pet.photo }}" />
+			{% else %}
+				<img src="{{ STATIC_URL }}no_image.png" />
+			{% endif %}
 			</div>
-			<strong>{{ p.pet.name }}</strong>
-			{% if p.pet.age %}<br />Возраст: {{ p.pet.age }} {{ p.pet.age|pluralize:"год,лет" }}{% endif %}
-			<br />Пол: {% if p.pet.sex == 'M' %}мальчик{% else %}девочка{% endif %}
-			<br />Здоровье: {% if p.pet.health == 'G' %}отличное{% elif p.pet.health == 'С' %}среднее{% else %}плохое{% endif %}
-			<br />Где находится: {% if p.pet.location == 'H' %}дома{% elif p.pet.location == 'S' %}в приюте{% else %}на улице{% endif %}
-			<!--{% if p.pet.district.name %}<br />({{ p.pet.disctrict.name }}){% endif %}-->
+			<strong>{{ pet.name }}</strong>
+			{% if pet.age %}<br />Возраст: {{ pet.age }} {{ pet.age|pluralize:"год,лет" }}{% endif %}
+			<br />Пол: {% if pet.sex == 'M' %}мальчик{% else %}девочка{% endif %}
+			<br />Здоровье: {% if pet.health == 'G' %}отличное{% elif pet.health == 'С' %}среднее{% else %}плохое{% endif %}
+			<br />Где находится: {% if pet.location == 'H' %}дома{% elif pet.location == 'S' %}в приюте{% else %}на улице{% endif %}
+			<!--{% if pet.district.name %}<br />({{ pet.disctrict.name }}){% endif %}-->
 		</a>
 	</li>
 {% endfor %}

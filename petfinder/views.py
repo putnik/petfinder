@@ -5,37 +5,51 @@ from petfinder.models import *
 
 
 def search(request):
-    petphotos = PetPhoto.objects.select_related().distinct('pet__id')
+    pets = Pet.objects.extra(
+        select={
+            'photo': '''
+                SELECT file
+                FROM petfinder_petphoto
+                WHERE petfinder_petphoto.pet_id = petfinder_pet.id
+                LIMIT 1
+            '''
+        },
+    )
 
     if ('city' in request.GET and request.GET['city']):
-        petphotos = petphotos.filter(pet__city=request.GET['city'])
+        pets = pets.filter(city=request.GET['city'])
 
     if ('kind' in request.GET and request.GET['kind']):
-        petphotos = petphotos.filter(pet__kind=request.GET['kind'])
+        pets = pets.filter(kind=request.GET['kind'])
 
     if ('age' in request.GET and request.GET['age']):
         if request.GET['age'] == '0-1':
-            petphotos = petphotos.filter(pet__age__lte=1)
+            pets = pets.filter(age__lte=1)
         elif request.GET['age'] == '0-1':
-            petphotos = petphotos.filter(pet__age__gte=1, pet__age__lte=3)
+            pets = pets.filter(age__gte=1, age__lte=3)
         elif request.GET['age'] == '3+':
-            petphotos = petphotos.filter(pet__age__gte=3)
+            pets = pets.filter(age__gte=3)
 
     if ('sex' in request.GET and request.GET['sex']):
-        petphotos = petphotos.filter(pet__sex=request.GET['sex'])
+        pets = pets.filter(sex=request.GET['sex'])
 
     return render_to_response('search.html', {
-        'request':  request,
-        'petphotos': petphotos,
+        'request': request,
+        'pets': pets,
         }, context_instance=RequestContext(request))
 
 def pet(request, id):
     pet = Pet.objects.get(id=id)
     photos = PetPhoto.objects.filter(pet=pet)
 
+    if 0 in photos:
+        photo = photos[0]
+    else:
+        photo = None
+
     return render_to_response('pet.html', {
         'pet': pet,
-        'photo': photos[0],
+        'photo': photo,
         'photos': photos[1:5],
         }, context_instance=RequestContext(request))
 
