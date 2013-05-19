@@ -31,7 +31,6 @@
 	</div>
 </div>
 
-{% if pets %}
 <div class="row">
 	<div class="span2 well">
 	<ul class="nav nav-list">
@@ -60,6 +59,7 @@
 	</ul>
 	</div>
 	<div class="span9">
+	{% if pets %}
 		<ul class="thumbnails">
 		{% for pet in pets %}
 			<li class="span3" style="height:260px; overflow-y:hidden">
@@ -81,9 +81,12 @@
 			</li>
 		{% endfor %}
 		</ul>
+	{% else %}
+		<h3>Никто не нашёлся :(</h3>
+		<h4>Попробуйте поискать с другими условиями.</h4>
+	{% endif %}
 	</div>
 </div>
-{% endif %}
 
 {% endblock %}
 
