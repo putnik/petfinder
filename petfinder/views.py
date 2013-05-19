@@ -42,7 +42,7 @@ def pet(request, id):
     pet = Pet.objects.get(id=id)
     photos = PetPhoto.objects.filter(pet=pet)
 
-    if 0 in photos:
+    if len(photos):
         photo = photos[0]
     else:
         photo = None
