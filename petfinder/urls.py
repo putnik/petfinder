@@ -6,7 +6,7 @@ admin.autodiscover()
 
 urlpatterns = patterns('',
     # Examples:
-    url(r'^$', 'petfinder.views.home', name='home'),
+    url(r'^$', 'petfinder.views.search', name='search'),
     url(r'^pet/(?P<id>\d+)/?$', 'petfinder.views.pet', name='pet'),
     # url(r'^petfinder/', include('petfinder.foo.urls')),
 
