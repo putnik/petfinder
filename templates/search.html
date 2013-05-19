@@ -78,10 +78,10 @@
 					{% endif %}
 					</div>
 					<strong>{{ pet.name }}</strong>
-					{% if pet.age %}<br />Возраст: {{ pet.age }} {{ pet.age|pluralize:"год,лет" }}{% endif %}
-					<br />Пол: {% if pet.sex == 'M' %}мальчик{% else %}девочка{% endif %}
-					<br />Здоровье: {% if pet.health == 'G' %}отличное{% elif pet.health == 'С' %}среднее{% else %}плохое{% endif %}
-					<br />Где находится: {% if pet.location == 'H' %}дома{% elif pet.location == 'S' %}в приюте{% else %}на улице{% endif %}
+					{% if pet.age %}<br />{{ pet.age }} {{ pet.age|pluralize:"год,лет" }},{% endif %}
+					{% if pet.sex == 'M' %}мальчик{% else %}девочка{% endif %},
+					<br />находится {% if pet.location == 'H' %}на передержке{% elif pet.location == 'S' %}в приюте{% else %}на улице{% endif %},
+					<br />здоровье {% if pet.health == 'G' %}отличное{% elif pet.health == 'С' %}среднее{% else %}плохое{% endif %}
 					<!--{% if pet.district.name %}<br />({{ pet.disctrict.name }}){% endif %}-->
 				</a>
 			</li>
