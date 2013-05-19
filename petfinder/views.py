@@ -4,8 +4,8 @@ from django.template import RequestContext
 from petfinder.models import *
 
 
-def home(request):
-    petphotos = PetPhoto.objects.select_related()
+def search(request):
+    petphotos = PetPhoto.objects.select_related().distinct('pet__id')
 
     if ('city' in request.GET and request.GET['city']):
         petphotos = petphotos.filter(pet__city=request.GET['city'])
