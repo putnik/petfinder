@@ -9,7 +9,7 @@
 				<img src="{{ MEDIA_URL }}{{ p.file }}" />
 			</div>
 			<strong>{{ p.pet.name }}</strong>
-			{% if p.pet.age %}<br />Возраст: {{ p.pet.age }} год{% endif %}
+			{% if p.pet.age %}<br />Возраст: {{ p.pet.age }} {{ p.pet.age|pluralize:"год,лет" }}{% endif %}
 			<br />Пол: {% if p.pet.sex == 'M' %}мальчик{% else %}девочка{% endif %}
 			<br />Здоровье: {% if p.pet.health == 'G' %}отличное{% elif p.pet.health == 'С' %}среднее{% else %}плохое{% endif %}
 			<br />Где находится: {% if p.pet.location == 'H' %}дома{% elif p.pet.location == 'S' %}в приюте{% else %}на улице{% endif %}
