@@ -40,16 +40,28 @@ def search(request):
 
 def pet(request, id):
     pet = Pet.objects.get(id=id)
-    photos = PetPhoto.objects.filter(pet=pet)
 
+    photos = PetPhoto.objects.filter(pet=pet)
     if len(photos):
         photo = photos[0]
     else:
         photo = None
 
+    related = Pet.objects.extra(
+        select={
+            'photo': '''
+                SELECT file
+                FROM petfinder_petphoto
+                WHERE petfinder_petphoto.pet_id = petfinder_pet.id
+                LIMIT 1
+            '''
+        },
+    )
+
     return render_to_response('pet.html', {
         'pet': pet,
         'photo': photo,
         'photos': photos[1:5],
+        'related': related[:4],
         }, context_instance=RequestContext(request))
 

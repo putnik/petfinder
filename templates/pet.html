@@ -28,5 +28,34 @@
 		<p>
 	</div>
 </div>
+
+<div class="row">
+	<div class="span12">
+		<h3>Похожие</h3>
+	{% if related %}
+		<ul class="thumbnails">
+		{% for pet in related %}
+			<li class="span3" style="height:260px; overflow-y:hidden">
+				<a class="thumbnail" href="/pet/{{ pet.id }}">
+					<div style="height:150px; overflow-y:hidden">
+					{% if pet.photo %}
+						<img src="{{ MEDIA_URL }}{{ pet.photo }}" />
+					{% else %}
+						<img src="{{ STATIC_URL }}no_image.png" />
+					{% endif %}
+					</div>
+					<strong>{{ pet.name }}</strong>
+					{% if pet.age %}<br />Возраст: {{ pet.age }} {{ pet.age|pluralize:"год,лет" }}{% endif %}
+					<br />Пол: {% if pet.sex == 'M' %}мальчик{% else %}девочка{% endif %}
+					<br />Здоровье: {% if pet.health == 'G' %}отличное{% elif pet.health == 'С' %}среднее{% else %}плохое{% endif %}
+					<br />Где находится: {% if pet.location == 'H' %}дома{% elif pet.location == 'S' %}в приюте{% else %}на улице{% endif %}
+					<!--{% if pet.district.name %}<br />({{ pet.disctrict.name }}){% endif %}-->
+				</a>
+			</li>
+		{% endfor %}
+		</ul>
+	{% endif %}
+	</div>
+</div>
 {% endblock %}
 
