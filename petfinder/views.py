@@ -25,8 +25,8 @@ def search(request):
     if ('age' in request.GET and request.GET['age']):
         if request.GET['age'] == '0-1':
             pets = pets.filter(age__lte=1)
-        elif request.GET['age'] == '0-1':
-            pets = pets.filter(age__in=[1, 2, 3,])
+        elif request.GET['age'] == '1-3':
+            pets = pets.filter(age__in=1, age__lte=3)
         elif request.GET['age'] == '3+':
             pets = pets.filter(age__gte=3)
 
