@@ -32,12 +32,14 @@
 </div>
 
 <div class="row">
-	<div class="span5" style="max-height:300px; overflow-y:hidden">
+	<div class="span5">
+		<div style="max-height:300px; overflow-y:hidden">
 		{% if photo %}
 			<img src="{{ MEDIA_URL }}{{ photo.file }}" />
 		{% else %}
 			<img src="{{ STATIC_URL }}img/no_image.png" />
 		{% endif %}
+		</div>
 		<br /><br />
 		<ul class="thumbnails">
 		{% for photo in photos %}
