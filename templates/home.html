@@ -5,7 +5,9 @@
 {% for p in petphotos %}
 	<li class="span2">
 		<a class="thumbnail" target="_blank" href="/pet/{{ p.pet.id }}">
-			<img src="{{ MEDIA_URL }}{{ p.file }}" class="img-rounded" />
+			<div style="height:100px; overflow-y:hidden">
+				<img src="{{ MEDIA_URL }}{{ p.file }}" />
+			</div>
 			<strong>{{ p.pet.name }}</strong>
 			{% if p.pet.breed %}<br />Порода: {{ p.pet.breed }}{% endif %}
 			{% if p.pet.color %}<br />Окрас: {{ p.pet.color }}{% endif %}
