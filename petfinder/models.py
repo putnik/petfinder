@@ -28,6 +28,18 @@ class District(models.Model):
         return self.name
 
 
+class Shelter(models.Model):
+    name = models.CharField(max_length=50, verbose_name=_("Name"))
+    city = models.ForeignKey('City', verbose_name=_("City"))
+    district = models.ForeignKey('District', blank=True, verbose_name=_("District"))
+
+    class Meta:
+        ordering = ['city', 'name',]
+
+    def __unicode__(self):
+        return self.name
+
+
 class Pet(models.Model):
     KIND_CHOICES = (
         ('C', _("Cat")),

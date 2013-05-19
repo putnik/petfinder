@@ -6,7 +6,7 @@ from django.utils.translation import ugettext_lazy as _
 from django.contrib import admin
 from django.conf import settings
 
-from petfinder.models import City, District, Org, Pet, PetPhoto
+from petfinder.models import *
 
 
 class CityAdmin(admin.ModelAdmin):
@@ -27,6 +27,16 @@ class DistrictAdmin(admin.ModelAdmin):
     )
 
     list_display = ['name', 'alias', 'city',]
+
+
+class ShelterAdmin(admin.ModelAdmin):
+    fieldsets = (
+        (None, {
+            'fields': ('name', 'city', 'district',)
+        }),
+    )
+
+    list_display = ['name', 'city',]
 
 
 class OrgAdmin(admin.ModelAdmin):
@@ -57,6 +67,7 @@ class PetAdmin(admin.ModelAdmin):
 
 admin.site.register(City, CityAdmin)
 admin.site.register(District, DistrictAdmin)
+admin.site.register(Shelter, ShelterAdmin)
 admin.site.register(Org, OrgAdmin)
 admin.site.register(Pet, PetAdmin)
 
