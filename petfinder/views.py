@@ -7,26 +7,22 @@ from petfinder.models import *
 def home(request):
     petphotos = PetPhoto.objects.select_related()
 
-    city = request.GET['city']
-    if (city):
-        petphotos = petphotos.filter(pet__city=city)
+    if ('city' in request.GET and request.GET['city']):
+        petphotos = petphotos.filter(pet__city=request.GET['city'])
 
-    kind = request.GET['kind']
-    if (kind):
-        petphotos = petphotos.filter(pet__kind=kind)
+    if ('kind' in request.GET and request.GET['kind']):
+        petphotos = petphotos.filter(pet__kind=request.GET['kind'])
 
-    age = request.GET['age']
-    if (age):
-        if age == '0-1':
+    if ('age' in request.GET and request.GET['age']):
+        if request.GET['age'] == '0-1':
             petphotos = petphotos.filter(pet__age__lte=1)
-        elif age == '0-1':
+        elif request.GET['age'] == '0-1':
             petphotos = petphotos.filter(pet__age__gte=1, pet__age__lte=3)
-        elif age == '3+':
+        elif request.GET['age'] == '3+':
             petphotos = petphotos.filter(pet__age__gte=3)
 
-    sex = request.GET['sex']
-    if (sex):
-        petphotos = petphotos.filter(pet__sex=sex)
+    if ('sex' in request.GET and request.GET['sex']):
+        petphotos = petphotos.filter(pet__sex=request.GET['sex'])
 
     return render_to_response('home.html', {
         'request':  request,
