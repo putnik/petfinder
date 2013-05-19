@@ -7,8 +7,8 @@
 		<a class="thumbnail" target="_blank" href="/pet/{{ p.pet.id }}">
 			<img src="{{ MEDIA_URL }}{{ p.file }}" height="100" />
 			<strong>{{ p.pet.name }}</strong>
-			{% if p.pet.breed %}Порода: {{ p.pet.breed }}<br />{% endif %}
-			{% if p.pet.color %}Окрас: {{ p.pet.color }}<br />{% endif %}
+			{% if p.pet.breed %}<br />Порода: {{ p.pet.breed }}{% endif %}
+			{% if p.pet.color %}<br />Окрас: {{ p.pet.color }}{% endif %}
 		</a>
 	</li>
 {% endfor %}
