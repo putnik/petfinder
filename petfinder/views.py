@@ -47,7 +47,7 @@ def pet(request, id):
     else:
         photo = None
 
-    related = Pet.objects.exclude(id=id).extra(
+    related = Pet.objects.filter(kind=pet.kind, city=pet.city).exclude(id=id).extra(
         select={
             'photo': '''
                 SELECT file
