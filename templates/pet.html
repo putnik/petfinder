@@ -4,7 +4,7 @@
 <ul class="thumbnails">
 {% for photo in photos %}
 	<li class="span2">
-		<img src="{{ MEDIA_URL }}{{ photo.file }}" />
+		<img src="{{ MEDIA_URL }}{{ photo.file }}" class="img-rounded" />
 	</li>
 {% endfor %}
 </ul>
