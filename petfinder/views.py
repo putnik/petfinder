@@ -47,7 +47,7 @@ def pet(request, id):
     else:
         photo = None
 
-    related = Pet.objects.extra(
+    related = Pet.objects.filter(id_ne=id).extra(
         select={
             'photo': '''
                 SELECT file
