@@ -22,6 +22,9 @@ def search(request):
     if ('kind' in request.GET and request.GET['kind']):
         pets = pets.filter(kind=request.GET['kind'])
 
+    base_pets = pets
+    is_found = True
+
     if ('age' in request.GET and request.GET['age']):
         if request.GET['age'] == '0-1':
             pets = pets.filter(age__lte=1)
@@ -33,9 +36,14 @@ def search(request):
     if ('sex' in request.GET and request.GET['sex']):
         pets = pets.filter(sex=request.GET['sex'])
 
+    if not len(pets):
+        is_found = False
+        pets = base_pets
+
     return render_to_response('search.html', {
         'request': request,
         'pets': pets,
+        'is_found': is_found,
         }, context_instance=RequestContext(request))
 
 def pet(request, id):
