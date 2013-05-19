@@ -61,7 +61,7 @@
 </div>
 {% if pet.description %}
 <div class="row">
-	<div class="span5">
+	<div class="span12">
 		<p>{{ pet.description }}</p>
 	</div>
 </div>
@@ -69,7 +69,17 @@
 
 <div class="row">
 	<div class="span12">
-		<h3>Похожие</h3>
+		<h3>Волонтёры</h3>
+		<ul>
+			<li><b>Иван Иванов:</b> телефон +7 926 123-45-67</li>
+			<li><b>Семён Петров:</b> телефон +7 926 123-45-67?</li>
+		</ul>
+	</div>
+</div>
+
+<div class="row">
+	<div class="span12">
+		<h3>Другие из поиска</h3>
 	{% if related %}
 		<ul class="thumbnails">
 		{% for pet in related %}
