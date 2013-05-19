@@ -3,14 +3,17 @@
 {% block content %}
 <ul class="thumbnails">
 {% for p in petphotos %}
-	<li class="span2">
+	<li class="span3">
 		<a class="thumbnail" target="_blank" href="/pet/{{ p.pet.id }}">
 			<div style="height:100px; overflow-y:hidden">
 				<img src="{{ MEDIA_URL }}{{ p.file }}" />
 			</div>
 			<strong>{{ p.pet.name }}</strong>
-			{% if p.pet.breed %}<br />Порода: {{ p.pet.breed }}{% endif %}
-			{% if p.pet.color %}<br />Окрас: {{ p.pet.color }}{% endif %}
+			{% if p.pet.age %}<br />Возраст: {{ p.pet.age }} год{% endif %}
+			<br />Пол: {% if p.pet.sex == 'M' %}мальчик{% else %}девочка{% endif %}
+			<br />Здоровье: {% if p.pet.health == 'G' %}отличное{% elif p.pet.health == 'С' %}среднее{% else %}плохое{% endif %}
+			<br />Где находится: {% if p.pet.location == 'H' %}дома{% elif p.pet.location == 'S' %}в приюте{% else %}на улице{% endif %}
+			<!--{% if p.pet.district.name %}<br />({{ p.pet.disctrict.name }}){% endif %}-->
 		</a>
 	</li>
 {% endfor %}
